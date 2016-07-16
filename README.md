@@ -51,3 +51,8 @@ gulp.task('styles', function () {
 
 - Add support for nested globbing
 - Add support for [includePaths](https://github.com/sass/node-sass#includepaths)
+
+# Who or what is "globi"?
+
+![alt tag](https://raw.githubusercontent.com/Nirazul/gulp-sass-globi/master/globi.png)
+Globi is a [Swiss cartoon character](https://en.wikipedia.org/wiki/Globi) chosen for this project because of his name's remarkable resemblance to the term _glob_ (and because almost all sensible name choices for such a plugin are gone). 

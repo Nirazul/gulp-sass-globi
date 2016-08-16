@@ -1,3 +1,7 @@
+# WIP
+
+This module is a WIP and neither published to npm nor usable as-is.
+
 # About gulp-sass-globi
 
 This started off as a fork of [gulp-sass-glob](https://www.npmjs.com/package/gulp-sass-glob).

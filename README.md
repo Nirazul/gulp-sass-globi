@@ -14,7 +14,7 @@ As some long-standing bugs and feature requests haven't been addressed, I decide
 # Install
 
 ```
-npm install gulp-sass-glob --save-dev
+npm install gulp-sass-globi --save-dev
 ```
 
 # Basic Usage

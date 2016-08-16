@@ -16,7 +16,7 @@ export default function gulpSassGlob(config = {}) {
 function transformFactory({ includePaths = [] }) {
     return function transform(file, env, callback) {
         const isSass = path.extname(file.path) === '.sass';
-        const base = path.normalize(path.join(path.dirname(file.path), '/'));
+        const base = path.normalize(path.dirname(file.path));
         
         let contents = file.contents.toString('utf-8');
         let contentsCount = contents.split('\n').length;
@@ -43,6 +43,8 @@ function transformFactory({ includePaths = [] }) {
                         const relativeFilePath = path.normalize(fullFilePath).replace(base, '');
                         return `@import "${ slash(relativeFilePath) }"${ isSass ? '' : ';' }`;
                     }
+                    
+                    return null;
                 });
             })));
             

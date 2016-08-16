@@ -15,15 +15,16 @@ export default function gulpSassGlob(config = {}) {
 
 function transformFactory({ includePaths = [] }) {
     return function transform(file, env, callback) {
+        const includePathsByFile = [...includePaths];
         const isSass = path.extname(file.path) === '.sass';
-        const base = path.normalize(path.dirname(file.path));
+        const base = path.normalize(path.join(path.dirname(file.path), '/'));
         
         let contents = file.contents.toString('utf-8');
         let contentsCount = contents.split('\n').length;
         
         let result;
         
-        includePaths.push(base);
+        includePathsByFile.push(base);
         
         for (var i = 0; i < contentsCount; i++) {
             result = reg.exec(contents);
@@ -35,12 +36,14 @@ function transformFactory({ includePaths = [] }) {
             const importRule = result[0];
             const globPattern = result[1];
             
-            const imports = dedupeArray(flattenArray(...includePaths.map((includePath) => {
-                return glob.sync(path.join(includePath, globPattern), {
-                    cwd: includePath,
+            const imports = dedupeArray(flattenArray(...includePathsByFile.map((includePath) => {
+                const normalizedIncludePath = path.normalize(path.join(includePath, '/'));
+                
+                return glob.sync(path.join(normalizedIncludePath, globPattern), {
+                    cwd: normalizedIncludePath,
                 }).map((fullFilePath) => {
                     if (fullFilePath !== file.path && isSassOrScss(fullFilePath)) {
-                        const relativeFilePath = path.normalize(fullFilePath).replace(base, '');
+                        const relativeFilePath = path.relative(normalizedIncludePath, fullFilePath);
                         return `@import "${ slash(relativeFilePath) }"${ isSass ? '' : ';' }`;
                     }
                     

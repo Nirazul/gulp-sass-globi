@@ -5,7 +5,8 @@ import glob from 'glob';
 import slash from 'slash';
 
 
-const reg = /^\s*@import\s+["']([^"']+\*[^"']*(\.scss|\.sass)?)["'];?$/gm;
+// http://regexr.com/3e9d9
+const reg = /^\s*@import\s+["']([^"']+\*[^"']*(\.scss|\.sass)?)["'];?[^\n]*$/gm;
 
 
 export default function gulpSassGlob(config = {}) {

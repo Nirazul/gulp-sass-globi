@@ -1,6 +1,6 @@
 {
   "name": "gulp-sass-globi",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Gulp plugin for gulp-sass to use glob imports in your sass/scss files",
   "repository": {
     "type": "git",

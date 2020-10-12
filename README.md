@@ -38,7 +38,7 @@ gulpfile.js
 ```javascript
 var gulp = require('gulp');
 var sass = require('gulp-sass');
-var sassGlob = require('gulp-sass-glob');
+var sassGlob = require('gulp-sass-globi');
 
 gulp.task('styles', function () {
     return gulp
